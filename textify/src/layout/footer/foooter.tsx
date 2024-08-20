@@ -21,7 +21,7 @@ const Footer = () => {
               <Typography variant="body2" >
                 <Box component="span" sx={{ display: 'flex', alignItems: 'center', mb: 1,color:"#7ECFF8" }}>
                 
-                  info@textifyt.co.uk
+                  info@TEXTIFYt.co.uk
                 </Box>
                 <Box component="span" sx={{ display: 'flex', alignItems: 'center' ,color:"secondary.main"}}>
                   

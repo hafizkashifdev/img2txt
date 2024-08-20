@@ -1,4 +1,4 @@
-'use client'; // Add this at the very top of the file
+'use client'; 
 
 import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -8,34 +8,38 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import Image from 'next/image';
+import logo from "../../../public/logo.png";
+
 
 
 const navigationLinks = ['Products', 'Pricing', 'Blog'];
 
-const NavLink = styled(Button)(({ theme }) => ({
+const NavLink = styled(Typography)(() => ({
     position: 'relative',
     overflow: 'hidden',
     textAlign: 'center',
-    padding: '12px 16px',
+    padding: '8px 12px',
+    marginRight: '10px',
     color: '#005F73',
     border: 'none',
     background: 'none',
     margin: '0 8px',
     transition: 'color 0.3s ease-in-out',
+    cursor: 'pointer',
     '&::after': {
         content: '""',
         position: 'absolute',
-        bottom: 0,
-        left: 0,
-        width: '100%',
-        height: '2px',
+        bottom: 9,
+        left: 'calc(45% - 50%)',
+        width: 'calc(100% - 15px)',        
+        height: '1px',
         backgroundColor: '#005F73',
         transform: 'scaleX(0)',
         transformOrigin: 'bottom left',
@@ -53,7 +57,8 @@ const NavLink = styled(Button)(({ theme }) => ({
 
 const SignInLink = styled(Button)(({ theme }) => ({
     color: '#005F73',
-    padding: '12px 16px',
+    padding: '8px 12px',
+    fontSize: '12px',
     borderRadius: '4px',
     transition: 'background-color 0.3s ease-in, color 0.3s ease-in',
     '&:hover': {
@@ -88,7 +93,7 @@ export default function Header() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <AdbIcon sx={{ display: { xs: 'flex', md: 'flex' }, mr: 1, color: '#005F73' }} />
+                    <Image src={logo} alt="logo" width={48} height={48} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -104,7 +109,7 @@ export default function Header() {
                                 textDecoration: 'none',
                             }}
                         >
-                            LOGO
+                            {/* TEXTIFY */}
                         </Typography>
                     </Box>
 
@@ -112,7 +117,7 @@ export default function Header() {
                         {navigationLinks.map((link) => (
                             <NavLink
                                 key={link}
-                                sx={{ my: 2 }}
+                                sx={{ }}
                             >
                                 {link}
                             </NavLink>
@@ -120,7 +125,7 @@ export default function Header() {
                     </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <SignInLink sx={{ my: 2 }}>
+                        <SignInLink sx={{ }}>
                             Sign In
                         </SignInLink>
                     </Box>
