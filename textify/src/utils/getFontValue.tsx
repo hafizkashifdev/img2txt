@@ -62,10 +62,15 @@ export function responsiveFontSizes({ xs, sm, md, lg }: any) {
 const useWidth = () => {
   const theme = useTheme();
   const keys = [...theme.breakpoints.keys].reverse();
-  return (
-    keys.reduce((output: any, key: any) => {
-      const matches = useResponsive("up", key);
-      return !output && matches ? key : output;
-    }, null) || "xs"
-  );
+  
+  // Array of matches for each breakpoint
+  const matches = keys.map((key) => useResponsive("up", key));
+
+  // Iterate over the keys and find the first breakpoint that matches
+  const matchedKey = keys.reduce((output: any, key: any, index: number) => {
+    return !output && matches[index] ? key : output;
+  }, null);
+
+  // Default to 'xs' if no match is found
+  return matchedKey || 'xs';
 };

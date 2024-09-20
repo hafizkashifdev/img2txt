@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 
 import { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -16,10 +16,14 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import logo from "../../../public/logo.png";
+import Link from 'next/link';
 
-
-
-const navigationLinks = ['Products', 'Pricing', 'Blog'];
+const navigationLinks = [
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Contact Us', href: '/contact-us' },
+    { label: 'Privacy Policy', href: '/privacy-policy' }
+];
 
 const NavLink = styled(Typography)(() => ({
     position: 'relative',
@@ -28,31 +32,33 @@ const NavLink = styled(Typography)(() => ({
     padding: '8px 12px',
     marginRight: '10px',
     color: '#005F73',
+    textDecoration: 'none',
     border: 'none',
     background: 'none',
+    listStyle: 'none',
     margin: '0 8px',
     transition: 'color 0.3s ease-in-out',
     cursor: 'pointer',
-    '&::after': {
-        content: '""',
-        position: 'absolute',
-        bottom: 9,
-        left: 'calc(45% - 50%)',
-        width: 'calc(100% - 15px)',        
-        height: '1px',
-        backgroundColor: '#005F73',
-        transform: 'scaleX(0)',
-        transformOrigin: 'bottom left',
-        transition: 'transform 0.3s ease-in-out',
-        animation: 'none', 
-    },
-    '&:hover': {
-        color: '#003d3d',
-        '&::after': {
-            transform: 'scaleX(1)',
-            animation: 'slideIn 0.3s forwards', 
-        },
-    },
+    // '&::after': {
+    //     content: '""',
+    //     position: 'absolute',
+    //     bottom: 9,
+    //     left: 0,
+    //     width: 'calc(100% - 15px)',
+    //     height: '1px',
+    //     backgroundColor: '#005F73',
+    //     transform: 'scaleX(0)',
+    //     transformOrigin: 'bottom left',
+    //     transition: 'transform 0.3s ease-in-out',
+    //     animation: 'none',
+    // },
+    // '&:hover': {
+    //     color: '#003d3d',
+    //     '&::after': {
+    //         transform: 'scaleX(1)',
+    //         animation: 'slideIn 0.3s forwards',
+    //     },
+    // },
 }));
 
 const SignInLink = styled(Button)(({ theme }) => ({
@@ -93,7 +99,7 @@ export default function Header() {
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Image src={logo} alt="logo" width={48} height={48} />
+                        <Image src={logo} alt="logo" width={48} height={48} />
                         <Typography
                             variant="h6"
                             noWrap
@@ -115,12 +121,11 @@ export default function Header() {
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, justifyContent: 'center' }}>
                         {navigationLinks.map((link) => (
-                            <NavLink
-                                key={link}
-                                sx={{ }}
-                            >
-                                {link}
-                            </NavLink>
+                            <Link key={link.label} href={link.href} passHref style={{ textDecoration: 'none' }}>
+                                <NavLink className="nav-link" sx={{ color: '#005F73', padding: '12px 16px', listStyle: "none", textDecoration: "none" }}>
+                                    {link.label}
+                                </NavLink>
+                            </Link>
                         ))}
                     </Box>
 
@@ -161,7 +166,7 @@ export default function Header() {
                     >
                         {navigationLinks.map((link) => (
                             <MenuItem
-                                key={link}
+                                key={link.label}
                                 onClick={handleMobileMenuToggle}
                                 sx={{
                                     width: '100%',
@@ -170,9 +175,11 @@ export default function Header() {
                                     borderBottom: '1px solid #ddd',
                                 }}
                             >
-                                <NavLink sx={{ color: '#005F73', padding: '12px 16px' }}>
-                                    {link}
-                                </NavLink>
+                                <Link href={link.href} passHref style={{ textDecoration: 'none' }}>
+                                    <NavLink className="nav-link" sx={{ color: '#005F73', padding: '12px 16px', listStyle: "none", textDecoration: "none" }}>
+                                        {link.label}
+                                    </NavLink>
+                                </Link>
                             </MenuItem>
                         ))}
                         <MenuItem
