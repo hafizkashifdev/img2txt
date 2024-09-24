@@ -1,34 +1,31 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-
-interface ToolDetailsProps {
+const DetailsComponent = ({
+  title,
+  description,
+  // features,
+  details,
+  icon,
+}: {
   title: string;
   description: string;
-  features: { title: string; description: string }[];
-  icon: IconDefinition; // IconDefinition type from FontAwesome
-}
-
-const ToolDetails = ({ title, description, features, icon }: ToolDetailsProps) => {
+  // features: Array<{ title: string; description: string }>;
+  details: any;
+  icon: any;
+}) => {
   return (
-    <div className="tool-details-card">
-      <div className="card-header">
-        <span className="icon">
-          {/* Use FontAwesomeIcon component to render the icon */}
-          <FontAwesomeIcon icon={icon} />
-        </span>
-        <h2>{title}</h2>
-      </div>
+    <div>
+      <h2>{title}</h2>
       <p>{description}</p>
-      <ul>
-        {features.map((feature, index) => (
-          <li key={index}>
-            <strong>{feature.title}</strong>: {feature.description}
-          </li>
-        ))}
-      </ul>
+      {/* Render the features */}
+      {/* {features.map((feature, index) => (
+        <div key={index}>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </div>
+      ))} */}
+      {/* Render the details */}
+      {details && <div>{typeof details === 'string' ? details : details}</div>}
     </div>
   );
 };
 
-export default ToolDetails;
+export default DetailsComponent;

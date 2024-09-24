@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Grid } from "@mui/material";
 import { useState } from "react";
@@ -8,29 +8,29 @@ import DetailsComponent from "./components/tool-details/tool-details";
 import toolsData from "./components/tool-card/tool-data"; // Assuming you have toolsData available here
 
 export default function Home() {
-  // State to track the selected tool
-  const [selectedTool, setSelectedTool] = useState({
-    title: "Image to Text Converter",
-    description: "Extract text from images with ease.",
-  });
+  // State to track the selected tool, initialized with the first tool from toolsData
+  const [selectedTool, setSelectedTool] = useState(toolsData[0]); // Set the first tool by default
 
   // Function to handle tool selection from ToolCards
-  const handleToolClick = (tool: { title: string; description: string }) => {
-    setSelectedTool(tool);
+  const handleToolClick = (tool:any) => {
+    setSelectedTool(tool); // Update the state with title, description, and details
   };
 
   // Sample features data for the selected tool
-  const toolFeatures = [
-    { title: "High Accuracy", description: "Extract text with OCR and maintain accuracy." },
-    { title: "Supports Multiple Formats", description: "Supports PNG, JPG, and other image formats." },
-    { title: "Fast and Easy", description: "Get your text extraction done in seconds." },
-  ];
+  // const toolFeatures = [
+  //   { title: "High Accuracy", description: "Extract text with OCR and maintain accuracy." },
+  //   { title: "Supports Multiple Formats", description: "Supports PNG, JPG, and other image formats." },
+  //   { title: "Fast and Easy", description: "Get your text extraction done in seconds." },
+  // ];
 
   return (
     <>
       <Grid sx={{ mx: "10%" }}>
-        {/* Pass selectedTool title and description dynamically to the Converter */}
-        <Converter title={selectedTool.title} description={selectedTool.description} />
+        {/* Pass selectedTool title, description, and details dynamically to the Converter */}
+        <Converter
+          title={selectedTool.title}
+          description={selectedTool.description}
+        />
       </Grid>
 
       <Grid container justifyContent="center" alignItems="center">
@@ -47,8 +47,9 @@ export default function Home() {
           <DetailsComponent
             title={selectedTool.title}
             description={selectedTool.description}
-            features={toolFeatures}
-            icon={selectedTool.icon} // You can customize this to dynamically load icons if needed
+            // features={toolFeatures}
+            details={selectedTool.details} // Pass the details to the DetailsComponent
+            icon={selectedTool.icon} // Dynamically load icons if needed
           />
         </Grid>
       </Grid>

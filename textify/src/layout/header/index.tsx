@@ -115,7 +115,7 @@ export default function Header() {
                                 textDecoration: 'none',
                             }}
                         >
-                            {/* TEXTIFY */}
+                            TEXTIFY
                         </Typography>
                     </Box>
 

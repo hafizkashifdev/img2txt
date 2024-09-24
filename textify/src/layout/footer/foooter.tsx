@@ -12,9 +12,9 @@ const Footer = () => {
           <Grid container spacing={4} justifyContent="space-between">
             <Grid item xs={12} sm={6} md={4}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <Image src="/path/to/logo.png" alt="Logo" width={50} height={50} />
+                <Image src={logo} alt="Logo" width={50} height={50} />
                 <Typography variant="h6" color="" sx={{ ml: 1 }}>
-                  {/* TEXTIFY */}
+                  TEXTIFY
                 </Typography>
               </Box>
               <Typography variant="body2" color="secondary.main" gutterBottom>
