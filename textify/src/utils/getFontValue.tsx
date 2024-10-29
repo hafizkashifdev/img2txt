@@ -1,3 +1,4 @@
+'use client'
 import { useTheme } from "@mui/material/styles";
 import useResponsive from "../hooks/useResponsive";
 
@@ -57,20 +58,21 @@ export function responsiveFontSizes({ xs, sm, md, lg }: any) {
   };
 }
 
-// ----------------------------------------------------------------------
-
 const useWidth = () => {
   const theme = useTheme();
-  const keys = [...theme.breakpoints.keys].reverse();
+
+  // Check each breakpoint directly with separate useResponsive calls
+  const isXl = useResponsive("up", "xl");
+  const isLg = useResponsive("up", "lg");
+  const isMd = useResponsive("up", "md");
+  const isSm = useResponsive("up", "sm");
+
+  // Return the first matched breakpoint in descending order
+  if (isXl) return "xl";
+  if (isLg) return "lg";
+  if (isMd) return "md";
+  if (isSm) return "sm";
   
-  // Array of matches for each breakpoint
-  const matches = keys.map((key) => useResponsive("up", key));
-
-  // Iterate over the keys and find the first breakpoint that matches
-  const matchedKey = keys.reduce((output: any, key: any, index: number) => {
-    return !output && matches[index] ? key : output;
-  }, null);
-
   // Default to 'xs' if no match is found
-  return matchedKey || 'xs';
+  return "xs";
 };
